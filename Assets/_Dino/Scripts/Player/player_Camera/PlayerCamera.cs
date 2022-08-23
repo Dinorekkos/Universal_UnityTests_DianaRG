@@ -7,7 +7,7 @@ public class PlayerCamera : MonoBehaviour
 {
     [Header("Mouse Movement")]
     [Range(1f,20f)]
-    [SerializeField] float sensitivityX = 20f;
+    [SerializeField] float sensitivityX = 50f;
     [Range(0f,5f)]
     [SerializeField] float sensitivityY= 0.5f;
 
