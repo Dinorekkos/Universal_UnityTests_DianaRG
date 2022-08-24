@@ -6,7 +6,8 @@ public class RaycastCamera : MonoBehaviour
 {
     Camera mainCamera;
     Mouse mouse;
-    
+
+   [SerializeField] private LayerMask usableLayer;
     void Start()
     {
         
@@ -14,13 +15,15 @@ public class RaycastCamera : MonoBehaviour
         mouse = Mouse.current;
         #endif
         
+       
+        
     }
 
     void Update()
     {
         if (mouse.leftButton.wasPressedThisFrame)
         {
-            //Debug.Log("click mouse");
+            // Debug.Log("click mouse");
             ClickMouseRaycast();
         }
     }
@@ -32,9 +35,15 @@ public class RaycastCamera : MonoBehaviour
         Vector2 coordinate = new Vector2(Screen.width/2, Screen.height/2);
         
         Ray raycast = mainCamera.ScreenPointToRay(coordinate);
-        if (Physics.Raycast(raycast, out var hit) && hit.collider.gameObject )
+        if (Physics.Raycast(raycast, out var hit, usableLayer))
         {
-            //if(ra)
+            IUsable usable = hit.transform.GetComponent<IUsable>();
+            // Debug.Log("Sale ray?");
+            if (usable != null)
+            {
+                usable.Use();
+                // Debug.Log("Is Usable");
+            }
         }
 
     }

@@ -11,5 +11,5 @@ public interface IUsable
         set;
     }
 
-    public void UseClick();
+    public void Use();
 }
