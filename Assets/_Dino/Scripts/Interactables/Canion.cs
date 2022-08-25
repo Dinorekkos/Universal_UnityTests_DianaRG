@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,13 +25,11 @@ public class Canion : MonoBehaviour
         switch (State)
         {
             case  CannonStates.None:
-                CheckCannonLoaded();
                 break;
             case CannonStates.Loaded:
                 MoveCannon();
                 break;
 
-            
         }
     }
 
@@ -63,12 +62,21 @@ public class Canion : MonoBehaviour
         }
     }
 
-    void CheckCannonLoaded()
+   
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.GetComponent<TakeObjects>())
+        {
+            Debug.Log("Se carga cañon");
+            State= CannonStates.Loaded;
+            
+            other.transform.position = placeToThrow.transform.position;
+            other.transform.parent = placeToThrow.transform;
+        }
     }
-    
-    
+
+
     private enum CannonStates
     {
         None, 
