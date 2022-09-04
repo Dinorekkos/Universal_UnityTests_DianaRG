@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TakeObjects : MonoBehaviour, IUsable
 {
-    
+    private bool isTaken;
     public bool CanInteract
     {
         get;
@@ -12,19 +13,26 @@ public class TakeObjects : MonoBehaviour, IUsable
     }
     
     [SerializeField] private GameObject hand;
-    void Start()
+   
+
+    public void Use(bool isgrab)
     {
-        
+        isTaken = isgrab;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DropObject(bool isgrab)
     {
-        
+        isTaken = isgrab;
+
     }
 
-    public void Use()
+    private void Update()
     {
-        transform.parent = hand.transform;
+        if (isTaken)
+        {
+            transform.position = hand.transform.position;
+        }
+        
+      
     }
 }

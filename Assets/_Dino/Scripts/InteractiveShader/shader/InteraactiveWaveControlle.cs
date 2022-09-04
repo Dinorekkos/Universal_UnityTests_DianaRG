@@ -36,12 +36,10 @@ public class InteraactiveWaveControlle : MonoBehaviour
         }    
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (mouse.leftButton.wasPressedThisFrame)
         {
-            //Debug.Log("click mouse");
             ClickMouseRaycast();
         }
     }
@@ -50,13 +48,11 @@ public class InteraactiveWaveControlle : MonoBehaviour
     {
         mainCamera = Camera.main;
         
-        //Vector2 mousePosition = mouse.position.ReadValue();
         Vector2 coordinate = new Vector2(Screen.width/2, Screen.height/2);
         
         Ray raycast = mainCamera.ScreenPointToRay(coordinate);
         if(Physics.Raycast (raycast,out var hit)&& hit.collider.gameObject == gameObject)
         {
-           // Debug.Log("HitObject with shader");
             StartWave(hit.point);
             
         }

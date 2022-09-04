@@ -38,8 +38,6 @@ public class Canion : MonoBehaviour
     {
         if (keyboard.aKey.isPressed)
         {
-            Debug.Log("Se está presionnado?");
-
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + 1 * Time.deltaTime * speed, transform.localEulerAngles.z);
         }
 

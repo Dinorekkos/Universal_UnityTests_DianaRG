@@ -11,5 +11,5 @@ public interface IUsable
         set;
     }
 
-    public void Use();
+    public void Use(bool isGrabing);
 }
