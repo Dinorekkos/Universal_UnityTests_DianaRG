@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -78,7 +74,6 @@ public class PlayerInteractions : MonoBehaviour
 
     void ClickMouseRaycast()
     {
-        
         mainCamera = Camera.main;
         Vector2 coordinate = new Vector2(Screen.width/2, Screen.height/2);
         
@@ -94,6 +89,7 @@ public class PlayerInteractions : MonoBehaviour
                 State = PlayerStates.GrabingObject;
                 isgrabingObject = true;
                 usable.Use(isgrabingObject);
+                Debug.Log(rigidbody.gameObject.name);
                 rigidbody.velocity = new Vector3(0, 0, 0);
                 grababbleObject = takeObject;
             }
@@ -105,7 +101,7 @@ public class PlayerInteractions : MonoBehaviour
     {
         State = PlayerStates.Interacting;
         HandlePlayerInteractions();
-        UIText.text = "Player is interacting, can´t move";
+        UIText.text = "Player is interacting, can´t move = Press - Q - to stop interacting";
     }
 
     void HandlePlayerInteractions()
