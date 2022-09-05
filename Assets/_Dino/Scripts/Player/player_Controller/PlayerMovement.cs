@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController characterController;
 
     [Header("Player Movement")] 
-    [SerializeField] private bool lockedMovement = false;
+    public bool lockedMovement = false;
     [Range(0f,10f)]
     [SerializeField] private float movementSpeed = 1f;
     [SerializeField] float gravity = -30f;

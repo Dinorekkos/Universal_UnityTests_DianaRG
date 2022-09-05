@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Canion : MonoBehaviour
 {
     [SerializeField] private GameObject placeToThrow;
+    [SerializeField] private GameObject objectToThrow;
     private float speed = 10f;
     private Keyboard keyboard;
     private CannonStates State;
@@ -64,13 +65,31 @@ public class Canion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.GetComponent<TakeObjects>())
         {
-            Debug.Log("Se carga cañon");
+           
             State= CannonStates.Loaded;
+            
+            TakeObjects takeObjects = other.gameObject.GetComponent<TakeObjects>();
+            Rigidbody rigidbody = other.gameObject.GetComponent<Rigidbody>();
+
+            
+            PlayerInteractions.Instance.dropObject = true;
+            takeObjects.isTaken = false;
+            PlayerInteractions.Instance.grababbleObject = null;
+            
+            objectToThrow = other.gameObject;
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             
             other.transform.position = placeToThrow.transform.position;
             other.transform.parent = placeToThrow.transform;
+            
+            PlayerInteractions.Instance.ActivateInteractingPlayer();
+            // Debug.Log("Player is interacting with canion");
+
+
+            
         }
     }
 

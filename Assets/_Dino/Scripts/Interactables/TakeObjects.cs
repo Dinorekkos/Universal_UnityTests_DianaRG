@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TakeObjects : MonoBehaviour, IUsable
 {
-    private bool isTaken;
+    public bool isTaken;
     public bool CanInteract
     {
         get;
